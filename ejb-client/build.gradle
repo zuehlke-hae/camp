@@ -1,4 +1,18 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile project(':ejb')
+<<<<<<< Updated upstream
+=======
+
+	compile group: 'org.wildfly', name: 'wildfly-ejb-client-bom', version: '8.0.0.Final'
+	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+>>>>>>> Stashed changes
+}
+
 

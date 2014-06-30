@@ -1,5 +1,9 @@
 apply plugin: 'ear'
+<<<<<<< Updated upstream
 apply plugin: 'java'
+=======
+
+>>>>>>> Stashed changes
 
 
 sourceCompatibility = 1.7
