@@ -5,3 +5,7 @@ apply plugin: 'eclipse'
 repositories {
    mavenCentral()
 }
+
+dependencies {
+	providedCompile group: 'org.jboss.spec', name: 'jboss-javaee-7.0', version: '1.0.0.Final'
+}
