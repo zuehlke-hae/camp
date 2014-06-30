@@ -29,14 +29,3 @@ uploadArchives {
        }
     }
 }
-
-task deploy(type: Copy) {
-    from 'build/libs'
-    into '/opt/wildfly-8.0.0.Final/standalone/deployments'
-    include '*.ear'
-}
-deploy.dependsOn build
-
-task unDeploy {
-    delete fileTree(dir: "/opt/wildfly-8.0.0.Final/standalone/deployments", include: "*.ear*")
-}
