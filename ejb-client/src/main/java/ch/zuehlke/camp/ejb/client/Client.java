@@ -14,7 +14,9 @@ public class Client {
 		Properties jndiProps = buildJndiProperties();
 
 		Context ctx = new InitialContext(jndiProps);
-		Object lookup = ctx.lookup("java:global/ejb-app/ejb/EchoBean");
+
+		Object lookup = ctx
+				.lookup("ejb-app/ejb/EchoBean!ch.zuehlke.camp.ejb.EchoBeanRemote");
 
 		EchoBeanRemote bean = (EchoBeanRemote) lookup;
 
@@ -26,7 +28,7 @@ public class Client {
 
 		jndiProps.put(Context.INITIAL_CONTEXT_FACTORY,
 				"org.jboss.naming.remote.client.InitialContextFactory");
-		jndiProps.put(Context.PROVIDER_URL, "remote://localhost:4447");
+		jndiProps.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
 		jndiProps.put(Context.SECURITY_PRINCIPAL, "client");
 		jndiProps.put(Context.SECURITY_CREDENTIALS, "password");
 		jndiProps.put("jboss.naming.client.ejb.context", true);
