@@ -15,6 +15,7 @@ task deploy(type: Copy) {
     into '/opt/wildfly-8.0.0.Final/standalone/deployments'
     include '*.ear'
 }
+
 deploy.dependsOn build
 
 task unDeploy {
