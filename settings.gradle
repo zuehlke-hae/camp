@@ -1,4 +1,4 @@
-rootProject.name = 'camp-base'
+rootProject.name = 'camp'
 
 include 'ejb'
 include 'ejb-client'
