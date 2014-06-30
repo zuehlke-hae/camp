@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-	deploy project(':ejb')
+	deploy project(path:':ejb', configuration:'archives')
 }
 
 task deploy(type: Copy) {
