@@ -18,6 +18,6 @@ task deploy(type: Copy) {
 
 deploy.dependsOn build
 
-task unDeploy {
+task undeploy  << {
     delete fileTree(dir: "/opt/wildfly-8.0.0.Final/standalone/deployments", include: "*.ear*")
 }
