@@ -1,6 +1,5 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'ear'
 
 repositories {
     mavenCentral()
@@ -9,15 +8,4 @@ repositories {
 dependencies {
 	compile group: 'org.jboss.spec', name: 'jboss-javaee-7.0', version: '1.0.0.Final'
 	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
-}
-
-task deploy(type: Copy) {
-    from 'build/libs'
-    into '/opt/wildfly-8.0.0.Final/standalone/deployments'
-    include '*.ear'
-}
-deploy.dependsOn build
-
-task unDeploy {
-    delete fileTree(dir: "/opt/wildfly-8.0.0.Final/standalone/deployments", include: "*.ear*")
 }
