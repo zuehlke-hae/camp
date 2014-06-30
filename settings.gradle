@@ -2,3 +2,4 @@ rootProject.name = 'camp'
 
 include 'ejb'
 include 'ejb-client'
+include 'war'
