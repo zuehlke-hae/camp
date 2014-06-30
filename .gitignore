@@ -2,6 +2,7 @@
 .classpath
 .project
 .gradle
+*/.classpath
 bin
 build
 *~
