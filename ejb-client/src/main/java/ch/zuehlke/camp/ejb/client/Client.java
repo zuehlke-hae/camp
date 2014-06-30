@@ -14,8 +14,7 @@ public class Client {
 		Properties jndiProps = buildJndiProperties();
 
 		Context ctx = new InitialContext(jndiProps);
-		Object lookup = ctx
-				.lookup("java:camp/EchoBean!ch.zuehlke.camp.ejb.EchoBeanRemote");
+		Object lookup = ctx.lookup("java:global/ejb-app/ejb/EchoBean");
 
 		EchoBeanRemote bean = (EchoBeanRemote) lookup;
 
