@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-	deploy project(':ejb')
+	deploy project(path:':ejb', configuration:'archives')
 	deploy project(path:':war', configuration:'archives')
 }
 
@@ -16,9 +16,10 @@ task deploy(type: Copy) {
     into '/opt/wildfly-8.0.0.Final/standalone/deployments'
     include '*.ear'
 }
+
 deploy.dependsOn build
 
-task unDeploy {
+task undeploy  << {
     delete fileTree(dir: "/opt/wildfly-8.0.0.Final/standalone/deployments", include: "*.ear*")
 }
 
