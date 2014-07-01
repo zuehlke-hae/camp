@@ -64,11 +64,13 @@ public class AsyncServlet2 extends HttpServlet {
         System.out.println("end MathPow " + System.currentTimeMillis());
         try {
 			out.println("<p>Result: " + future.get() + "</p>");
+	        System.out.println("printed result " + System.currentTimeMillis());
 		} catch (InterruptedException | ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ac.complete();
+			System.out.println("ac.complete " + System.currentTimeMillis());
 		}
         out.println("</body>");
     }
