@@ -34,7 +34,10 @@ public class HelloWorldResource {
 		
 		em.persist(person);
 		
-		return person.getFirstName();
+		//Now look it up again (for test)
+		Person result = em.find(Person.class, person.getId());
+		
+		return "Created " + person.toString() + ", found " + result;
 //		ContactBla test = em.find(ContactBla.class, 1L);
 		
 		

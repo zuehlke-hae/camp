@@ -9,6 +9,6 @@ repositories {
 dependencies {
 	compile group: 'org.jboss.spec', name: 'jboss-javaee-7.0', version: '1.0.0.Final'
 	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
-	compile project(':jpa')
+	providedCompile project(':jpa')
 	testCompile group: 'junit', name: 'junit', version: '4.+'
 }
