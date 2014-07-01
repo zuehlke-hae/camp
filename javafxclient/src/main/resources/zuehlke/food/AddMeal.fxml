@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <bottom>
+    <Button fx:id="saveMenu" mnemonicParsing="false" text="Essen speichern" BorderPane.alignment="CENTER">
+      <BorderPane.margin>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" fx:id="x1" />
+      </BorderPane.margin>
+    </Button>
+  </bottom>
+  <center>
+    <GridPane>
+      <children>
+        <Label fx:id="foodLabel" text="Esswaren" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" fx:id="x1" />
+          </GridPane.margin>
+        </Label>
+        <TextField fx:id="foodField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="0" />
+        <Label text="Menuesswaren" textAlignment="LEFT" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.margin="$x1" GridPane.rowIndex="1" />
+        <ListView fx:id="menuComposition" prefHeight="153.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+        <Label fx:id="wennLabel" text="Wann" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="3" />
+        <TextField fx:id="wennField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="3" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="299.0" minWidth="10.0" prefWidth="97.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="503.0" minWidth="10.0" prefWidth="503.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="107.0" minHeight="0.0" prefHeight="26.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="274.0" minHeight="10.0" prefHeight="209.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="274.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </center>
+  <top>
+    <Label fx:id="userId" text="benutzer@email.com" BorderPane.alignment="CENTER">
+      <BorderPane.margin>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" fx:id="x1" />
+      </BorderPane.margin>
+    </Label>
+  </top>
+</BorderPane>

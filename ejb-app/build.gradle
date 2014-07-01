@@ -9,6 +9,7 @@ repositories {
 dependencies {
 	compile group: 'org.jboss.spec', name: 'jboss-javaee-7.0', version: '1.0.0.Final'
 	deploy project(path:':ejb', configuration:'archives')
+	deploy project(path:':war', configuration:'archives')
 }
 
 task deploy(type: Copy) {
@@ -21,4 +22,13 @@ deploy.dependsOn build
 
 task undeploy  << {
     delete fileTree(dir: "/opt/wildfly-8.0.0.Final/standalone/deployments", include: "*.ear*")
+}
+
+ear {
+	appDirName 'earContent'
+	
+	deploymentDescriptor {
+		applicationName = "jee-ear"
+		webModule("war.war", "/web")
+	}
 }
