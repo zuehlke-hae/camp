@@ -59,7 +59,9 @@ public class AsyncServlet2 extends HttpServlet {
             }
         });
         MathPow calculator = new MathPow(2, 10);
+        System.out.println("start MathPow " + System.currentTimeMillis());
         Future<Integer> future = executor.submit(calculator);
+        System.out.println("end MathPow " + System.currentTimeMillis());
         try {
 			out.println("<p>Result: " + future.get() + "</p>");
 		} catch (InterruptedException | ExecutionException e) {
