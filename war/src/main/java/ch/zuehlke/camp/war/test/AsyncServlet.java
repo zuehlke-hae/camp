@@ -19,8 +19,9 @@ public class AsyncServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2788685284959380787L;
 
-    @Resource
-    ManagedExecutorService executor;
+//    @Resource
+	@Resource(lookup="java:comp/DefaultManagedExecutorService")
+	ManagedExecutorService executor;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
