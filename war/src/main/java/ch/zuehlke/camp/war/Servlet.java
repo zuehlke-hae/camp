@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/TestServlet"})
 public class Servlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private static final long serialVersionUID = -9089231358752688259L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

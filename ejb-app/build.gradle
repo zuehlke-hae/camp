@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
 	deploy project(':ejb')
+	deploy project(path:':war', configuration:'archives')
 }
 
 task deploy(type: Copy) {
@@ -19,4 +20,13 @@ deploy.dependsOn build
 
 task unDeploy {
     delete fileTree(dir: "/opt/wildfly-8.0.0.Final/standalone/deployments", include: "*.ear*")
+}
+
+ear {
+	appDirName 'earContent'
+	
+	deploymentDescriptor {
+		applicationName = "jee-ear"
+		webModule("war.war", "/web")
+	}
 }
