@@ -1,4 +1,4 @@
-package ch.zuehlke.camp.war;
+package ch.zuehlke.camp.war.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/TestServlet"})
-public class Servlet extends HttpServlet {
+public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = -9089231358752688259L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class Servlet extends HttpServlet {
         out.println("<title>Test 1</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<p>Test</p>");
+        out.println("<p>Test-Servlet</p>");
         out.println("</body>");
     }
 }
