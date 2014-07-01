@@ -31,7 +31,7 @@ public class AsyncServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<p>Async-Servlet</p>");
-        out.println("</body>");
+//        out.println("</body>");
         AsyncContext ac = request.startAsync();
         ac.addListener(new AsyncListener() {
             @Override
@@ -55,6 +55,8 @@ public class AsyncServlet extends HttpServlet {
             }
         });
         executor.submit(new Service(ac));
+        out.println("<p>See log for details</p>");
+        out.println("</body>");
     }
 
     class Service implements Runnable {
@@ -69,7 +71,7 @@ public class AsyncServlet extends HttpServlet {
         public void run() {
             System.out.println("Service started");
             try {
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 	            System.out.println("Service interrupted");
 			}
