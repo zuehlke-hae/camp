@@ -16,13 +16,17 @@ public class GreetingServlet extends HttpServlet {
 	private static final long serialVersionUID = -5457401445337149517L;
 	
 	@Inject
-	private SimpleGreeting greetingService;
+	private GreetingService greetingService;
+	
+	@Inject
+	private CounterService counterService;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String greeting = greetingService.greet(name);
+		String counter = counterService.calculateIdentifier();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.println("<html>");
@@ -30,8 +34,8 @@ public class GreetingServlet extends HttpServlet {
         out.println("<title>Greeting-Servlet</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<p>Greeting-Servlet</p>");
-        out.println("<p>" + greeting + "</p>");
+        out.println("<p>Greeting: " + greeting + "</p>");
+        out.println("<p>Counter: " + counter + "</p>");
         out.println("</body>");
 	}
 

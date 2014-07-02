@@ -1,13 +1,19 @@
 package ch.zuehlke.camp.war.cdi;
 
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 
 
-public class GreetingService {
+@SessionScoped
+public class GreetingService implements Serializable {
 
-//	@Inject SimpleGreeting greeting;
-//
-//	public String greet(String name) {
-//		return greeting.greet(name);
-//	}
+	private static final long serialVersionUID = -5805097361121982143L;
+	@Inject SimpleGreeting greeting;
+
+	public String greet(String name) {
+		return greeting.greet(name);
+	}
 
 }
