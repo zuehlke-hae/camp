@@ -13,6 +13,7 @@ public class GreetingService implements Serializable {
 //	@Inject Greeting greeting;
 	@Inject @Fancy Greeting greeting;
 
+	@PerformanceLogging
 	public String greet(String name) {
 		return greeting.greet(name);
 	}

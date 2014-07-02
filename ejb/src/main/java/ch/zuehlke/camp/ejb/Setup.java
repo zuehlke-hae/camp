@@ -21,13 +21,12 @@ public class Setup {
 
 	@GET
 	public String setup() {
-	    Query q1 = em.createNativeQuery("DELETE FROM BomModule");
-
+	    Query q1 = em.createNativeQuery("DELETE FROM Food");
 	    q1.executeUpdate();
 	    
 		JobOperator jo = BatchRuntime.getJobOperator();
 		jo.start("setup", new Properties());
-		
+
 		return "Job started";
 	}
 }
