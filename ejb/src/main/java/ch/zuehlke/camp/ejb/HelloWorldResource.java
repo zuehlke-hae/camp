@@ -34,6 +34,7 @@ public class HelloWorldResource {
 	public String getClichedMessage() {
 		
 		JobOperator jo = BatchRuntime.getJobOperator();
+		@SuppressWarnings("unused")
 		long jid = jo.start("myJob", new Properties());
 
 		

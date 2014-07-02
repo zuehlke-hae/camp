@@ -8,6 +8,7 @@ import ch.zuehlke.camp.ejb.cdi.annotation.SpecialQualifier;
 @SessionScoped
 public class SpecialGreeter implements Greeter {
 
+	private static final long serialVersionUID = 415451742542003054L;
 	int id;
 	
 	public SpecialGreeter() {
