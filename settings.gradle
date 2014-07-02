@@ -4,6 +4,7 @@ include 'ejb'
 include 'ejb-client'
 include 'ejb-app'
 include 'jpa'
+include 'batch'
 include 'war'
 
 

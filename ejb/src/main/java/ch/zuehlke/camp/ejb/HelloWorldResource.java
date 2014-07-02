@@ -1,5 +1,9 @@
 package ch.zuehlke.camp.ejb;
 
+import java.util.Properties;
+
+import javax.batch.operations.JobOperator;
+import javax.batch.runtime.BatchRuntime;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -28,6 +32,9 @@ public class HelloWorldResource {
 	// type "text/plain"
 	@Produces("text/plain;charset=" + encoding)
 	public String getClichedMessage() {
+		
+		JobOperator jo = BatchRuntime.getJobOperator();
+		long jid = jo.start("myJob", new Properties());
 
 		
 		Person person = new Person();

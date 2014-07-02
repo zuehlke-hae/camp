@@ -17,6 +17,7 @@ public class ApplicationConfig extends Application {
         		SimpleRESTEJB.class, 
         		HelloWorldResource.class, 
         		EchoBean.class,
+        		Setup.class,
         		ArtistResource.class));
     }
 }
