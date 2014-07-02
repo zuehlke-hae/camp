@@ -1,9 +1,9 @@
-<job id="setp" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
+<job id="setup" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
     <step id="myStep" >
         <chunk item-count="3">
-            <reader ref="CsvReader"/>
-            <processor ref="CsvProcessor"/>
-            <writer ref="DbWriter"/>
+            <reader ref="csvReader"/>
+            <processor ref="csvProcessor"/>
+            <writer ref="dbWriter"/>
         </chunk>    
     </step>
 </job> 
