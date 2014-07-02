@@ -11,10 +11,11 @@ import javax.interceptor.InvocationContext;
 public class PerformanceLoggingInterceptor {
 
 	@AroundInvoke
+	@PerformanceLogging
 	public Object log(InvocationContext context) throws Exception {
 		String name = context.getMethod().getClass().getSimpleName() + "." + context.getMethod().getName();
 //		String params = context.getParameters().toString();
-		System.out.println("Method " + name + " startet at " + System.currentTimeMillis());
+		System.out.println("Method " + name + " started at " + System.currentTimeMillis());
 		Object result = context.proceed();
 		System.out.println("Method " + name + " ended   at " + System.currentTimeMillis());
 		return result;
