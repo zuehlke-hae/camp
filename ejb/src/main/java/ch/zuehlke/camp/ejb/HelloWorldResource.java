@@ -14,7 +14,9 @@ import ch.zuehlke.camp.jpa.Person;
 @PersistenceContext(name = "ExampleDS")
 @Transactional
 public class HelloWorldResource {
-
+	
+	private static final String encoding  = "UTF-8";
+	
 	// dependency injection bindet den EM an den Lifecycle der Bean
 	// und sein TX an die Beanmethode
 	@PersistenceContext
@@ -24,7 +26,7 @@ public class HelloWorldResource {
 	@GET
 	// The Java method will produce content identified by the MIME Media
 	// type "text/plain"
-	@Produces("text/plain")
+	@Produces("text/plain;charset=" + encoding)
 	public String getClichedMessage() {
 
 		
