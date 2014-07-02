@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Named
-public class MyItemWriter extends AbstractItemWriter {
+public class DbWriter extends AbstractItemWriter {
     
     @PersistenceContext
     EntityManager em;

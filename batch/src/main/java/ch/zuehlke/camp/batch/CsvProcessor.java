@@ -8,7 +8,7 @@ import javax.inject.Named;
 import ch.zuehlke.camp.jpa.Person;
 
 @Named
-public class MyItemProcessor implements ItemProcessor {
+public class CsvProcessor implements ItemProcessor {
     @Override
     public Person processItem(Object t) {
         System.out.println("processItem: " + t);

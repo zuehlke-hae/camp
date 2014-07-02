@@ -11,7 +11,7 @@ import javax.batch.api.chunk.AbstractItemReader;
 import javax.inject.Named;
 
 @Named
-public class MyItemReader extends AbstractItemReader {
+public class CsvReader extends AbstractItemReader {
 
     private BufferedReader reader;
 
@@ -32,7 +32,7 @@ public class MyItemReader extends AbstractItemReader {
         try {
             return reader.readLine();
         } catch (IOException ex) {
-            Logger.getLogger(MyItemReader.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CsvReader.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
