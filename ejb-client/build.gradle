@@ -8,6 +8,7 @@ repositories {
 dependencies {
 	compile project(':ejb')
 
+	//TODO: This misses Hibernate. Unless Hibernate is included here, all Hibernate Exceptions will get mapped to ClassNotFoundException on the client side.
 	compile group: 'org.wildfly', name: 'wildfly-ejb-client-bom', version: '8.0.0.Final'
 	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
 }
