@@ -1,4 +1,4 @@
-package ch.zuehlke.camp.war.test;
+package ch.zuehlke.camp.war.concurrent;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ch.zuehlke.camp.war.cdi.PerformanceLogging;
+
 @WebServlet(urlPatterns = "/AsyncServlet", asyncSupported = true)
 public class AsyncServlet extends HttpServlet {
 
@@ -23,6 +25,7 @@ public class AsyncServlet extends HttpServlet {
 	@Resource(lookup="java:comp/DefaultManagedExecutorService")
 	ManagedExecutorService executor;
 
+    @PerformanceLogging
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -31,7 +34,7 @@ public class AsyncServlet extends HttpServlet {
         out.println("<title>Async-Servlet</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<p>Async-Servlet</p>");
+        out.println("<p>Async-Servlet 1</p>");
 //        out.println("</body>");
         AsyncContext ac = request.startAsync();
         ac.addListener(new AsyncListener() {
@@ -60,6 +63,18 @@ public class AsyncServlet extends HttpServlet {
         out.println("</body>");
     }
 
+    @PerformanceLogging
+    private void longRunningMethod(AsyncContext ac) {
+        System.out.println("Service started");
+        try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+            System.out.println("Service interrupted");
+		}
+        System.out.println("Service completed");
+        ac.complete();
+    }
+
     class Service implements Runnable {
 
         AsyncContext ac;
@@ -70,14 +85,7 @@ public class AsyncServlet extends HttpServlet {
 
         @Override
         public void run() {
-            System.out.println("Service started");
-            try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-	            System.out.println("Service interrupted");
-			}
-            System.out.println("Service completed");
-            ac.complete();
+        	longRunningMethod(ac);
         }
     }
 
