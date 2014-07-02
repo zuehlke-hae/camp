@@ -15,6 +15,8 @@ import ch.zuehlke.camp.service.ArtistService;
 import ch.zuehlke.camp.service.annotation.MockQualifier;
 
 @Path("artist")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class ArtistResource {
 
 	@Inject
@@ -22,14 +24,12 @@ public class ArtistResource {
 	private ArtistService artistService;
 	
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<Artist> getArtists() {
 		return artistService.getArtists();
 	}
 	
 	// Use RESTClient Add-On (Firefox, Chrome) for example
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
 	public Artist postArtis(Artist artist) {
 		return artistService.createArtist(artist);
 	}

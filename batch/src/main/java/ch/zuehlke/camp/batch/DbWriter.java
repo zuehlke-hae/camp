@@ -15,10 +15,10 @@ public class DbWriter extends AbstractItemWriter {
 
     @Override
     public void writeItems(List list) {
-        System.out.println("writeItems: " + list);
-        for (Object person : list) {
-            System.out.println("writing: " + person);
-            em.persist(person);
+        //System.out.println("writeItems: " + list.size());
+        for (Object object : list) {
+            em.persist(object);
+            System.out.println("written: " + object);
         }
     }
 }
