@@ -12,4 +12,7 @@ repositories {
 dependencies {
 	compile group: 'org.jboss.spec', name: 'jboss-javaee-7.0', version: '1.0.0.Final'
 	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	//compile group: 'net.java.openjfx.backport', name: 'openjfx-78-backport-compat', version: '1.8.0.1'
+	//compile group: 'net.java.openjfx.backport', name: 'openjfx-78-backport', version: '1.8.0-ea-b96.1'
+	//compile group: 'net.java.openjfx.backport', name: 'openjfx-78-backport-native', version: '1.8.0-ea-b96.1'
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SpringPane fx:id="identificationPane"  xmlns:fx="http://javafx.com/fxml">
+	<children>
+		<Label fx:id="userId" text="Benutzerid:" />
+        <TextField fx:id="userIdField" />
+		<Button fx:id="identify" mnemonicParsing="false" text="Anmelden" />
+	</children>
+	<springConstraints>
+		<SpringConstraints>
+			<node><fx:reference source="userIdField"/></node>
+			<north><StaticSpring preferredValue="100.0"/></north>
+			<west><StaticSpring preferredValue="100.0"/></west>
+		</SpringConstraints>
+		<SpringConstraints>
+			<node><fx:reference source="identify"/></node>
+			<north><StaticSpring preferredValue="300.0"/></north>
+			<west><StaticSpring preferredValue="100.0"/></west>
+		</SpringConstraints>
+	</springConstraints>
+</SpringPane>
+
