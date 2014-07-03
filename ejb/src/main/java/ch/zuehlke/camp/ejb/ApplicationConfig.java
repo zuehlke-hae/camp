@@ -18,6 +18,7 @@ public class ApplicationConfig extends Application {
         		HelloWorldResource.class, 
         		EchoBean.class,
         		Setup.class,
+        		Check.class,
         		ArtistResource.class));
     }
 }
