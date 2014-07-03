@@ -7,6 +7,8 @@ import java.util.concurrent.Future;
 
 import javax.annotation.Resource;
 import javax.enterprise.concurrent.ManagedExecutorService;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.servlet.AsyncContext;
 import javax.servlet.AsyncEvent;
 import javax.servlet.AsyncListener;
@@ -21,9 +23,10 @@ public class AsyncServlet2 extends HttpServlet {
 
 	private static final long serialVersionUID = 2788685284959380787L;
 
-//    @Resource
 	@Resource(lookup="java:comp/DefaultManagedExecutorService")
 	ManagedExecutorService executor;
+
+	@Inject Event<MathPowEvent> observableManager;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -58,8 +61,8 @@ public class AsyncServlet2 extends HttpServlet {
                 System.out.println("onStartAsync");
             }
         });
-        MathPow calculator = new MathPow(2, 10);
         System.out.println("start MathPow " + System.currentTimeMillis());
+        MathPow calculator = new MathPow(2, 10, observableManager);
         Future<Integer> future = executor.submit(calculator);
         System.out.println("end MathPow " + System.currentTimeMillis());
         try {
