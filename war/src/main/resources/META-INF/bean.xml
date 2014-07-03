@@ -5,4 +5,7 @@ http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
 	<interceptors>
 		<class>ch.zuehlke.camp.war.cdi.PerformanceLoggingInterceptor</class>
 	</interceptors>
+	<decorators>
+		<class>ch.zuehlke.camp.war.cdi.GreetingDecorator</class>
+	</decorators>
 </beans>
