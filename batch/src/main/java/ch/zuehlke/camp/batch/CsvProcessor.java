@@ -2,6 +2,8 @@ package ch.zuehlke.camp.batch;
 
 import javax.batch.api.chunk.ItemProcessor;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import ch.zuehlke.camp.factories.FoodFactory;
 import ch.zuehlke.camp.factories.FoodGroupFactory;
@@ -9,6 +11,10 @@ import ch.zuehlke.camp.factories.FoodSourceFactory;
 
 @Named
 public class CsvProcessor implements ItemProcessor {
+	
+	@PersistenceContext
+    EntityManager em;
+	
 	@Override
 	public Object processItem(Object t) {
 		@SuppressWarnings("unchecked")
@@ -24,7 +30,7 @@ public class CsvProcessor implements ItemProcessor {
 		case "FOOD_GRP.csv":
 			return FoodGroupFactory.createFoodGroup(tokens);
 		case "FOOD_NM.csv":	//THE NAMES OF FOOD
-			return FoodFactory.createFood(tokens);
+			return FoodFactory.createFood(tokens, em);
 		case "FOOD_SRC.csv":
 			return FoodSourceFactory.createFoodSource(tokens);
 		case "MEASURE.csv":
