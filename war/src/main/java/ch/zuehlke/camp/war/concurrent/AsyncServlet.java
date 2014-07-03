@@ -64,7 +64,7 @@ public class AsyncServlet extends HttpServlet {
     }
 
     @PerformanceLogging
-    private void longRunningMethod(AsyncContext ac) {
+    protected void longRunningMethod(AsyncContext ac) {
         System.out.println("Service started");
         try {
 			Thread.sleep(3000);

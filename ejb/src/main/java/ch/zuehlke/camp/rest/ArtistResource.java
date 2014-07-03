@@ -12,7 +12,6 @@ import javax.ws.rs.core.MediaType;
 
 import ch.zuehlke.camp.domain.Artist;
 import ch.zuehlke.camp.service.ArtistService;
-import ch.zuehlke.camp.service.annotation.MockQualifier;
 
 @Path("artist")
 @Produces(MediaType.APPLICATION_JSON)
@@ -20,7 +19,8 @@ import ch.zuehlke.camp.service.annotation.MockQualifier;
 public class ArtistResource {
 
 	@Inject
-	@MockQualifier
+	// Uncomment this line to switch to the service mock
+//	@MockQualifier
 	private ArtistService artistService;
 	
 	@GET
@@ -29,6 +29,7 @@ public class ArtistResource {
 	}
 	
 	// Use RESTClient Add-On (Firefox, Chrome) for example
+	// Important: Set Content-Type header parameter to application/json
 	@POST
 	public Artist postArtis(Artist artist) {
 		return artistService.createArtist(artist);

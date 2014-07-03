@@ -25,7 +25,7 @@ public class Setup {
 	    q1.executeUpdate();
 	    
 		JobOperator jo = BatchRuntime.getJobOperator();
-		long id = jo.start("setup", new Properties());
+		jo.start("setup", new Properties());
 
 		return "Job started";
 	}
