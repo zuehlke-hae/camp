@@ -28,10 +28,8 @@ public class FoodGroup {
 		return id;
 	}
 	
-	@Override
-	public String toString() {
+	public String asString() {
 		return "FoodGroup [id=" + id + ", name=" + name + "]";
-		
 	}
 
 }

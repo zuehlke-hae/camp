@@ -40,9 +40,7 @@ public class NutrimentName {
 		return id;
 	}
 	
-	@Override
-	public String toString() {
+	public String asString() {
 		return "NutrimentName [id=" + id + ", name=" + name + ", symbol=" + symbol + ", unit=" + unit + "]";
-		
 	}
 }

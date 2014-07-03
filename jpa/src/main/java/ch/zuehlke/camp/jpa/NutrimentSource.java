@@ -28,9 +28,7 @@ public class NutrimentSource {
 		return id;
 	}
 	
-	@Override
-	public String toString() {
+	public String asString() {
 		return "NutrimentSource.java [id=" + id + ", name=" + name + "]";
-		
 	}
 }

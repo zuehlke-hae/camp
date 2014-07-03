@@ -21,6 +21,8 @@ public class ApplicationConfig extends Application {
         		Setup.class,
         		Check.class,
         		FindFood.class,
+        		AddMeal.class,
+        		Report.class,
         		ArtistResource.class,
         		CompanyResource.class));
     }

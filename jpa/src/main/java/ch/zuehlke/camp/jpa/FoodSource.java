@@ -28,10 +28,8 @@ public class FoodSource {
 		return id;
 	}
 	
-	@Override
-	public String toString() {
+	public String asString() {
 		return "FoodSource [id=" + id + ", name=" + name + "]";
-		
 	}
 
 }

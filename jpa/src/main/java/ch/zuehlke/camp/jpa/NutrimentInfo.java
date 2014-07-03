@@ -47,8 +47,7 @@ public class NutrimentInfo {
 		return id;
 	}
 
-	@Override
-	public String toString() {
+	public String asString() {
 		return "NutrimentInfo [id=" + id + ", value=" + value + ", nutrimentName=" + nutrimentName + "]";
 	}
 }

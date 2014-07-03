@@ -11,9 +11,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Food {
-	private static final String NEWLINE = "<br>";
-	private static final String TAB = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	
+
 	@Id
 	private Long id;
 	
@@ -39,6 +37,10 @@ public class Food {
 		this.foodSource = source;
 	}
 
+	public Food(String name) {
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -47,20 +49,18 @@ public class Food {
 		return id;
 	}
 	
-	@Override
-	public String toString() {
+	public String asString() {
 		StringBuilder result = new StringBuilder();
-		result.append("Food [id=" + id + ", name=" + name + NEWLINE);
-		result.append(TAB + "foodGroup=" + foodGroup + NEWLINE);
-		result.append(TAB + "foodSource=" + foodSource + NEWLINE);
-		result.append(TAB + "nutrimentInfos=[" + NEWLINE);
+		result.append("Food [id=" + id + ", name=" + name);
+		result.append("foodGroup=" + foodGroup);
+		result.append("foodSource=" + foodSource);
+		result.append("nutrimentInfos=[");
 		for (NutrimentInfo nutriment : nutrimentInfos) {
-			result.append(TAB + TAB + nutriment.toString() + NEWLINE);
+			result.append(nutriment.asString());
 		}
-		result.append(TAB + "]" + NEWLINE);
+		result.append("]");
 		result.append("]");
 		return result.toString();
-		
 	}
 
 	public FoodGroup getFoodGroup() {
