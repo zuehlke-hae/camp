@@ -4,6 +4,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import ch.zuehlke.camp.rest.ArtistResource;
+import ch.zuehlke.camp.rest.CompanyResource;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class ApplicationConfig extends Application {
         		EchoBean.class,
         		Setup.class,
         		Check.class,
-        		ArtistResource.class));
+        		ArtistResource.class,
+        		CompanyResource.class));
     }
 }

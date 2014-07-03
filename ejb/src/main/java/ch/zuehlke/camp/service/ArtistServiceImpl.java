@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
+import javax.enterprise.inject.Any;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -11,6 +14,7 @@ import javax.transaction.Transactional;
 
 import ch.zuehlke.camp.domain.Artist;
 import ch.zuehlke.camp.jpa.Member;
+import ch.zuehlke.camp.service.annotation.Add;
 import ch.zuehlke.camp.service.interceptor.Logging;
 
 @Stateless
@@ -20,6 +24,11 @@ public class ArtistServiceImpl implements ArtistService {
 
 	@PersistenceContext
 	EntityManager entityManager;
+	
+	@Inject
+	@Any
+	@Add
+	private Event<Artist> artistAddedEvent;
 	
 	@Override
 	public List<Artist> getArtists() {
@@ -41,7 +50,9 @@ public class ArtistServiceImpl implements ArtistService {
 		entityManager.persist(newArtistEntity);
 		entityManager.flush();
 		
-		return createNewArtistDomainObject(newArtistEntity);
+		Artist newArtist = createNewArtistDomainObject(newArtistEntity);
+		artistAddedEvent.fire(newArtist);
+		return newArtist;
 	}
 
 	private Artist createNewArtistDomainObject(

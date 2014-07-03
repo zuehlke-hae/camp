@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+
+/**.grid *{
+	-fx-background-color: red;
+    -fx-background-radius: 5.0;
+    -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-padding: 10;
+    -fx-hgap: 50;
+    -fx-vgap: 100;
+}**/
+
+#borderPane {
+	-fx-padding: 10;
+}
+
+#saveMenu {
+	-fx-background-color: red;
+    -fx-background-insets: 50;
+}
+
+#userId {
+	-fx-background-color: blue;
+}
+
+#foodField {
+	-fx-pref-width: 200.0;
+	-fx-background-color: blue;
+}
+
+#menuComposition {
+	-fx-pref-height: 153.0;
+	-fx-pref-width: 600.0;
+	-fx-background-color: green;
+}
+
+#wennField{
+	 -fx-pref-width: 200.0;
+	 -fx-background-color: yellow;
+}
+
+#addMealGridPane {
+	-gridpane-margin: 10.0;
+	-fx-background-color: red;
+	-fx-hgap: 10;
+    -fx-vgap: 10;
+}

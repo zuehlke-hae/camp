@@ -1,6 +1,6 @@
 <job id="setup" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="1.0">
     <step id="myStep" >
-        <chunk item-count="3">
+        <chunk item-count="100000">
             <reader ref="csvReader"/>
             <processor ref="csvProcessor"/>
             <writer ref="dbWriter"/>
