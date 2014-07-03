@@ -18,7 +18,7 @@ public class NutrimentInfo {
 	private NutrimentName nutrimentName;
 	
 	@ManyToOne
-	private NutrimentSource source;
+	private NutrimentSource nutrimentSource;
 	
 	public NutrimentInfo() {
 		
@@ -28,7 +28,7 @@ public class NutrimentInfo {
 			NutrimentSource nutrimentSource) {
 		this.nutrimentName = nutrimentName;
 		this.value = nT_VALUE_DB;
-		this.source = nutrimentSource;
+		this.nutrimentSource = nutrimentSource;
 	}
 
 	public NutrimentName getNutrimentName() {
@@ -40,7 +40,7 @@ public class NutrimentInfo {
 	}
 
 	public NutrimentSource getNutrimentSource() {
-		return source;
+		return nutrimentSource;
 	}
 
 	public Long getId() {
@@ -49,6 +49,6 @@ public class NutrimentInfo {
 
 	@Override
 	public String toString() {
-		return "NutrimentInfo [id=" + id + ", value=" + value + ", name=" + nutrimentName + "]";
+		return "NutrimentInfo [id=" + id + ", value=" + value + ", nutrimentName=" + nutrimentName + "]";
 	}
 }

@@ -1,6 +1,7 @@
 package ch.zuehlke.camp.ejb;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -29,16 +30,16 @@ public class FindFood {
 	@Path("{something}")
 	public String find(@PathParam("something") String approxName)
 			throws JsonGenerationException, JsonMappingException, IOException {
-
+		approxName = URLDecoder.decode(approxName, "UTF-8");
+		System.out.println("Searching for: " + approxName);
+		
 		TypedQuery<Food> q1 = em.createQuery(
-				"SELECT x FROM Food x WHERE x.name='" + approxName + "'",
+				"SELECT x FROM Food x WHERE x.name LIKE '%" + approxName + "%'",
 				Food.class);
-		List<Food> foods = q1.getResultList();
-
+		List<Food> results = q1.getResultList();
+		
 		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(foods);
-
-		return json;
+		return mapper.writeValueAsString(results);
 	}
 
 }

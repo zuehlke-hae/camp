@@ -11,12 +11,11 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Food {
-	
 	private static final String NEWLINE = "<br>";
 	private static final String TAB = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	
 	@Id
-	private Long foodId;
+	private Long id;
 	
 	@ManyToOne
 	private FoodGroup foodGroup;
@@ -25,7 +24,7 @@ public class Food {
 	private FoodSource foodSource;
 	
 	@OneToMany
-	private Collection<NutrimentInfo> nutriments = new ArrayList<NutrimentInfo>();
+	private Collection<NutrimentInfo> nutrimentInfos = new ArrayList<NutrimentInfo>();
 	
 	private String name;
 	
@@ -34,7 +33,7 @@ public class Food {
 	}
 	
 	public Food(Long id, String name, FoodGroup group, FoodSource source) {
-		this.foodId = id;
+		this.id = id;
 		this.name = name;
 		this.foodGroup = group;
 		this.foodSource = source;
@@ -45,17 +44,17 @@ public class Food {
 	}
 
 	public Long getId() {
-		return foodId;
+		return id;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		result.append("Food [foodId=" + foodId + ", name=" + name + NEWLINE);
+		result.append("Food [id=" + id + ", name=" + name + NEWLINE);
 		result.append(TAB + "foodGroup=" + foodGroup + NEWLINE);
 		result.append(TAB + "foodSource=" + foodSource + NEWLINE);
 		result.append(TAB + "nutrimentInfos=[" + NEWLINE);
-		for (NutrimentInfo nutriment : nutriments) {
+		for (NutrimentInfo nutriment : nutrimentInfos) {
 			result.append(TAB + TAB + nutriment.toString() + NEWLINE);
 		}
 		result.append(TAB + "]" + NEWLINE);
@@ -73,10 +72,14 @@ public class Food {
 	}
 
 	public void addNutrimentInfo(NutrimentInfo info) {
-		nutriments.add(info);
+		nutrimentInfos.add(info);
+	}
+	
+	public void setNutrimentInfos(Collection<NutrimentInfo> nutrimentInfos) {
+		this.nutrimentInfos = nutrimentInfos;
 	}
 	
 	public Collection<NutrimentInfo> getNutrimentInfos() {
-		return Collections.unmodifiableCollection(nutriments);
+		return Collections.unmodifiableCollection(nutrimentInfos);
 	}
 }
