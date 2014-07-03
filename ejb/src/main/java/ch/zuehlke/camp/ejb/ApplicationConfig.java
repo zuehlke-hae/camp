@@ -20,6 +20,7 @@ public class ApplicationConfig extends Application {
         		EchoBean.class,
         		Setup.class,
         		Check.class,
+        		FindFood.class,
         		ArtistResource.class,
         		CompanyResource.class));
     }

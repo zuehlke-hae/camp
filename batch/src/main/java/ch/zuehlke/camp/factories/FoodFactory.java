@@ -1,10 +1,6 @@
 package ch.zuehlke.camp.factories;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-
 import ch.zuehlke.camp.jpa.Food;
 import ch.zuehlke.camp.jpa.FoodGroup;
 import ch.zuehlke.camp.jpa.FoodSource;

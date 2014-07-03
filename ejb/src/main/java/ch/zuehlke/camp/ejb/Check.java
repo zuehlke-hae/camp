@@ -32,10 +32,10 @@ public class Check {
 	}
 	
 	private void appendFoods(StringBuilder returnString) {
-		TypedQuery<Food> q1 = em.createQuery("SELECT x FROM Food x", Food.class);
+		TypedQuery<Food> q1 = em.createQuery("SELECT x FROM Food x WHERE x.foodId=2", Food.class);
 	    List<Food> foods = q1.getResultList();
 	    
-	    returnString.append("Found " + foods.size() + " rows in Table Food." + NEWLINE);
+	    returnString.append("Found " + foods.size() + " rows in Table Food with foodId=2." + NEWLINE);
 	    
 	    for (Object result : foods) {
 	    	returnString.append(result.toString() + NEWLINE);
