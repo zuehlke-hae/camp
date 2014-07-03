@@ -11,9 +11,11 @@ import javax.transaction.Transactional;
 
 import ch.zuehlke.camp.domain.Artist;
 import ch.zuehlke.camp.jpa.Member;
+import ch.zuehlke.camp.service.interceptor.Logging;
 
 @Stateless
 @Transactional
+@Logging
 public class ArtistServiceImpl implements ArtistService {
 
 	@PersistenceContext
