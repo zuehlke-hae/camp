@@ -16,7 +16,7 @@ public class PerformanceLoggingInterceptor implements Serializable {
 
 	@AroundInvoke
 	public Object log(InvocationContext context) throws Exception {
-		String name = context.getClass().getSimpleName() + "." + context.getMethod().getName();
+		String name = context.getMethod().getName();
 //		String params = context.getParameters().toString();
 		System.out.println("Method " + name + " started at " + System.currentTimeMillis());
 		Object result = context.proceed();
