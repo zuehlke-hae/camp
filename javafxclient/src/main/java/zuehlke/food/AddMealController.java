@@ -1,11 +1,14 @@
 package zuehlke.food;
 
+import java.lang.ref.WeakReference;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javafx.beans.binding.Bindings;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -33,8 +36,11 @@ public class AddMealController {
 	@FXML
 	private ListView<AddMealViewModel> menuComposition;
 	
-	public AddMealController(){
+	private WeakReference<ZenFoodApp> app;
+	
+	public AddMealController(ZenFoodApp zenFoodApp){
 		initialize();
+		app = new WeakReference<ZenFoodApp>(zenFoodApp);
 	}
 	
 	
@@ -55,7 +61,28 @@ public class AddMealController {
 	    saveMenu.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//FIXME: call service
+				
+				Task<Void> callServiceTask = new Task<Void>(){
+
+					@Override
+					protected Void call() throws Exception {
+						return null;
+						//FIXME: call service
+					}
+					
+				};
+				
+				callServiceTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+
+					@Override
+					public void handle(WorkerStateEvent event) {
+						app.get().navigateToMainScreen();
+					}
+					
+				});
+				
+				//FIXME: Use an application Executor
+				new Thread(callServiceTask).start();
 			}
 		});
 	}

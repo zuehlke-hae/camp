@@ -20,6 +20,8 @@ public class ZenFoodApp extends Application {
 
 	private Scene scene;
 	private AddMealController addMenuController;
+	private UserIdentificationController userIdentificationController;
+	private MainScreenController mainScreenController;
 
 	static {
 		System.out.println("IS_IPHONE = " + IS_IPHONE);
@@ -35,14 +37,16 @@ public class ZenFoodApp extends Application {
 
 	@Override
 	public void init() throws Exception {
-		addMenuController = new AddMealController();
+		addMenuController = new AddMealController(this);
+		userIdentificationController = new UserIdentificationController(this);
+		mainScreenController = new MainScreenController(this);
 	};
 
 	@Override
 	public void start(final Stage stage) throws Exception {
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 		// CREATE SCENE
-		scene = new Scene(addMenuController.getView(), 1024, 768, Color.WHITE);
+		scene = new Scene(mainScreenController.getView(), 1024, 768, Color.WHITE);
 		stage.setScene(scene);
 		// START FULL SCREEN IF WANTED
 		if (PlatformFeatures.START_FULL_SCREEN) {
@@ -51,7 +55,19 @@ public class ZenFoodApp extends Application {
 			stage.setWidth(primaryScreenBounds.getWidth());
 			stage.setHeight(primaryScreenBounds.getHeight());
 		}
-		stage.setTitle("TestFx");
+		stage.setTitle("ZenFoodApp");
 		stage.show();
+	}
+	
+	void navigateToAddMeal(){
+		scene.setRoot(addMenuController.getView());
+	}
+	
+	void navigateToMainScreen(){
+		scene.setRoot(mainScreenController.getView());
+	}
+	
+	void logout() {
+		scene.setRoot(userIdentificationController.getView());
 	}
 }
