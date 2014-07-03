@@ -20,7 +20,7 @@ public class CsvReader extends AbstractItemReader {
 			"FOOD_SRC.csv", "MEASURE.csv", "NT_AMT.csv", "NT_NM.csv",
 			"NT_SRC.csv", "REFU_NM.csv", "REFUSE.csv", "YIELD.csv",
 			"YLD_NM.csv" };*/
-	private String[] sourceFiles = { "FOOD_GRP.csv", "FOOD_SRC.csv", "FOOD_NM.csv" };
+	private String[] sourceFiles = { "FOOD_GRP.csv", "FOOD_SRC.csv", "FOOD_NM.csv", "NT_SRC.csv", "NT_NM.csv", "NT_AMT.csv" };
 
 
 	@Override

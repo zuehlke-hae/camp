@@ -8,6 +8,9 @@ import javax.persistence.PersistenceContext;
 import ch.zuehlke.camp.factories.FoodFactory;
 import ch.zuehlke.camp.factories.FoodGroupFactory;
 import ch.zuehlke.camp.factories.FoodSourceFactory;
+import ch.zuehlke.camp.factories.NutrimentInfoFactory;
+import ch.zuehlke.camp.factories.NutrimentNameFactory;
+import ch.zuehlke.camp.factories.NutrimentSourceFactory;
 
 @Named
 public class CsvProcessor implements ItemProcessor {
@@ -37,16 +40,12 @@ public class CsvProcessor implements ItemProcessor {
 			// TODO: Strategy
 			return null;
 		case "NT_AMT.csv":
-			// TODO: Strategy
-			return null;
+			return NutrimentInfoFactory.createNutrimentInfo(tokens, em);
 		case "NT_NM.csv":
-			// TODO: Strategy
-			return null;
+			return NutrimentNameFactory.createNutrimentName(tokens);
 		case "NT_SRC.csv":
-			// TODO: Strategy
-			return null;
+			return NutrimentSourceFactory.createNutrimentSource(tokens);
 		case "REFU_NM.csv":
-			// TODO: Strategy
 			return null;
 		case "REFUSE.csv":
 			// TODO: Strategy
