@@ -7,13 +7,13 @@ import javax.inject.Inject;
 
 
 @SessionScoped
+@PerformanceLogging
 public class GreetingService implements Serializable {
 
 	private static final long serialVersionUID = -5805097361121982143L;
-//	@Inject Greeting greeting;
-	@Inject @Fancy Greeting greeting;
+	@Inject Greeting greeting;
+//	@Inject @Fancy Greeting greeting;
 
-	@PerformanceLogging
 	public String greet(String name) {
 		return greeting.greet(name);
 	}
