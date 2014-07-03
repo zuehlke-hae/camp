@@ -1,15 +1,11 @@
 package ch.zuehlke.camp.ejb;
 
-import java.util.Properties;
-
-import javax.batch.operations.JobOperator;
-import javax.batch.runtime.BatchRuntime;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 // The Java class will be hosted at the URI path "/helloworld"
 @Path("/helloworld")
@@ -30,7 +26,6 @@ public class HelloWorldResource {
 	// type "text/plain"
 	@Produces("text/plain;charset=" + encoding)
 	public String getClichedMessage() {
-		
 		return "hello world";
 	}
 }

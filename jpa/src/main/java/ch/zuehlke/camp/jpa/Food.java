@@ -2,7 +2,6 @@ package ch.zuehlke.camp.jpa;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -12,12 +11,10 @@ public class Food {
 	private Long foodId;
 	
 	@ManyToOne
-    @JoinColumn(name="groupId")
 	private FoodGroup foodGroup;
 	
 	@ManyToOne
-    @JoinColumn(name="sourceId")
-	private FoodGroup foodSource;
+	private FoodSource foodSource;
 	
 	private String name;
 	
@@ -40,8 +37,24 @@ public class Food {
 	
 	@Override
 	public String toString() {
-		return "Food [foodId=" + foodId + ",foodGroup=" + foodGroup + ",foodSource=" + foodSource + ", name=" + name + "]";
+		return "Food [foodId=" + foodId + ",foodGroup=" + getFoodGroup() + ",foodSource=" + getFoodSource() + ", name=" + name + "]";
 		
+	}
+
+	public FoodGroup getFoodGroup() {
+		return foodGroup;
+	}
+
+	public void setFoodGroup(FoodGroup foodGroup) {
+		this.foodGroup = foodGroup;
+	}
+
+	public FoodSource getFoodSource() {
+		return foodSource;
+	}
+
+	public void setFoodSource(FoodSource foodSource) {
+		this.foodSource = foodSource;
 	}
 
 }
