@@ -12,6 +12,7 @@ dependencies {
 	deploy project(':jpa')
 	deploy project(':batch')
 	deploy project(path:':war', configuration:'archives')
+	deploy project(path:':webSocketServer', configuration:'archives')
 }
 
 task deploy(type: Copy) {

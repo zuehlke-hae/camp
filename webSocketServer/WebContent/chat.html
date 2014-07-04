@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WebSocket Client</title>
+<script type="text/javascript">
+	var wsocket;
+	function connect() {
+		wsocket = new WebSocket("ws://localhost:8080/webSocketServer/chat");
+		wsocket.onmessage = onMessage;
+	}
+
+	function onMessage(evt) {
+		document.getElementById("messages").innerHTML += evt.data;
+	}
+
+	window.addEventListener("load", connect, false);
+</script>
+</head>
+<body>
+
+	<table>
+		<tr>
+			<td><label id="rateLbl">Messages:</label></td>
+			<td><label id="messages"></label></td>
+		</tr>
+	</table>
+</body>
+</html>

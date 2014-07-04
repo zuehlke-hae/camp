@@ -1,0 +1,14 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName="com.zuehlke.fro.websocket.client.WebSocketClient"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'javax.websocket:javax.websocket-api:1.0'
+	compile 'org.glassfish.tyrus.bundles:tyrus-standalone-client:1.7'
+	}

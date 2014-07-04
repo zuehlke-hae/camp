@@ -6,5 +6,6 @@ include 'ejb-app'
 include 'jpa'
 include 'batch'
 include 'war'
+include 'webSocketServer'
 
 
