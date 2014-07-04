@@ -10,7 +10,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 import ch.zuehlke.camp.jpa.Food;
-import ch.zuehlke.camp.jpa.FoodGroup;
 
 @Stateless
 @Path("check")

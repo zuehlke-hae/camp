@@ -10,8 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.google.common.collect.Lists;
-
 import ch.zuehlke.camp.jpa.Company;
 import ch.zuehlke.camp.jpa.Investor;
 
