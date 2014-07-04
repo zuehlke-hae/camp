@@ -10,8 +10,13 @@ repositories {
 }
 
 dependencies {
+	//compile project(':ejb')
+	compile project(':jpa')
 	compile group: 'org.jboss.spec', name: 'jboss-javaee-7.0', version: '1.0.0.Final'
 	compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.1.1'
+	compile group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '+'
+	compile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
 	//compile group: 'net.java.openjfx.backport', name: 'openjfx-78-backport-compat', version: '1.8.0.1'
 	//compile group: 'net.java.openjfx.backport', name: 'openjfx-78-backport', version: '1.8.0-ea-b96.1'
 	//compile group: 'net.java.openjfx.backport', name: 'openjfx-78-backport-native', version: '1.8.0-ea-b96.1'

@@ -1,5 +1,17 @@
 package zuehlke.food;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.http.client.ClientProtocolException;
+import org.mockito.Mockito;
+
+import ch.zuehlke.camp.jpa.EatenFood;
+import ch.zuehlke.camp.jpa.Food;
+import zuehlke.food.service.RestAPI;
+import zuehlke.food.service.ServiceApi;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -20,8 +32,9 @@ public class ZenFoodApp extends Application {
 
 	private Scene scene;
 	private AddMealController addMenuController;
-	private UserIdentificationController userIdentificationController;
+	//private UserIdentificationController userIdentificationController;
 	private MainScreenController mainScreenController;
+	private ServiceApi service;
 
 	static {
 		System.out.println("IS_IPHONE = " + IS_IPHONE);
@@ -37,16 +50,47 @@ public class ZenFoodApp extends Application {
 
 	@Override
 	public void init() throws Exception {
+		ServiceApi serviceMock = new ServiceApi(){
+
+			@Override
+			public List<Food> findFood(String searchString) throws IOException {
+				List<ch.zuehlke.camp.jpa.Food> foods = new ArrayList<ch.zuehlke.camp.jpa.Food>();
+				ch.zuehlke.camp.jpa.Food apple = new ch.zuehlke.camp.jpa.Food("apfel");
+				ch.zuehlke.camp.jpa.Food pery = new ch.zuehlke.camp.jpa.Food("birne");
+				foods.add(apple);
+				foods.add(pery);
+				return foods;
+			}
+
+			@Override
+			public void addMeal(Date eatenDate, List<Food> foodsEaten,
+					List<Double> values) throws ClientProtocolException,
+					IOException {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public List<EatenFood> report() throws ClientProtocolException,
+					IOException {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+		};
+		
+		
 		addMenuController = new AddMealController(this);
-		userIdentificationController = new UserIdentificationController(this);
+		//userIdentificationController = new UserIdentificationController(this);
 		mainScreenController = new MainScreenController(this);
+		service = serviceMock;
 	};
 
 	@Override
 	public void start(final Stage stage) throws Exception {
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 		// CREATE SCENE
-		scene = new Scene(mainScreenController.getView(), 1024, 768, Color.WHITE);
+		scene = new Scene(addMenuController.getView(), 1024, 768, Color.WHITE);
 		stage.setScene(scene);
 		// START FULL SCREEN IF WANTED
 		if (PlatformFeatures.START_FULL_SCREEN) {
@@ -68,6 +112,11 @@ public class ZenFoodApp extends Application {
 	}
 	
 	void logout() {
-		scene.setRoot(userIdentificationController.getView());
+		//scene.setRoot(userIdentificationController.getView());
+		scene.setRoot(mainScreenController.getView());
+	}
+	
+	ServiceApi getService(){
+		return service;
 	}
 }

@@ -13,15 +13,25 @@
     <Button fx:id="saveMenu" mnemonicParsing="false" text="Essen speichern" BorderPane.alignment="CENTER" />
   </bottom>
   <center>
-    <GridPane fx:id="addMealGridPane" maxHeight="-1.0" maxWidth="-1.0" BorderPane.alignment="TOP_LEFT">
+    <GridPane fx:id="addMealGridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="TOP_LEFT">
       <children>
         <Label fx:id="foodLabel" text="Esswaren" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField fx:id="foodField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Label text="Menuesswaren" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-        <ListView fx:id="menuComposition" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+        <ComboBox fx:id="foodField" editable="true" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" />
+        <Label text="Menuesswaren" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+        <ListView fx:id="menuComposition" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="2" />
         <Label fx:id="wennLabel" text="Wann" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <TextField fx:id="wennField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <TextField fx:id="wennField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+        <Button fx:id="searchNutriment" mnemonicParsing="false" text="Suchen" GridPane.columnIndex="2" GridPane.rowIndex="0" />
       </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="-1.0" percentWidth="50.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+      </rowConstraints>
     </GridPane>
   </center>
   <stylesheets>
