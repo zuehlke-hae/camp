@@ -8,22 +8,28 @@ import java.util.concurrent.Future;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.enterprise.concurrent.ManagedTask;
 import javax.enterprise.concurrent.ManagedTaskListener;
+import javax.enterprise.event.Event;
 
-public class MathPow implements Callable<Integer>, ManagedTask, ManagedTaskListener {
+public class MathPow implements Callable<Integer>, ManagedTask, ManagedTaskListener  {
 
-	public MathPow(int base, int exp) {
+	public MathPow(int base, int exp, Event<MathPowEvent> observableManager) {
 		super();
 		this.base = base;
 		this.exp = exp;
+		this.observableManager = observableManager;
 	}
 
 	private final int base;
 	private final int exp;
+	private final Event<MathPowEvent> observableManager;
+
 
 	@Override
 	public Integer call() throws Exception {
 		Thread.sleep(5000);
-		return Integer.valueOf((int)Math.pow(base, exp));
+		Integer result = Integer.valueOf((int)Math.pow(base, exp));
+		observableManager.fire(new MathPowEvent(result));
+		return result;
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class FoodGroup {
 	
 	@Id
-	private Long groupId;
+	private Long id;
 	
 	private String name;
 	
@@ -16,7 +16,7 @@ public class FoodGroup {
 	}
 	
 	public FoodGroup(Long id, String name) {
-		this.groupId = id;
+		this.id = id;
 		this.name = name;
 	}
 
@@ -25,13 +25,11 @@ public class FoodGroup {
 	}
 
 	public Long getId() {
-		return groupId;
+		return id;
 	}
 	
-	@Override
-	public String toString() {
-		return "FoodGroup [groupId=" + groupId + ", name=" + name + "]";
-		
+	public String asString() {
+		return "FoodGroup [id=" + id + ", name=" + name + "]";
 	}
 
 }

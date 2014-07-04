@@ -21,14 +21,10 @@ public class FoodFactory {
 		String FD_DT_PUB = tokens[10]; // Publish Date?
 		String SCI_NM = tokens[11]; // Scientific name
 		
-		Food food = new Food(Long.parseLong(FD_ID), L_FD_NME);
-
 		FoodGroup group = em.find(FoodGroup.class, Long.parseLong(FD_GRP_ID));
 		FoodSource source = em.find(FoodSource.class, Long.parseLong(FD_SRC_ID));
 
-		food.setFoodGroup(group);
-		food.setFoodSource(source);
-		
+		Food food = new Food(Long.parseLong(FD_ID), L_FD_NME, group, source);
 		return food;
 	}
 

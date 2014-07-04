@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class FoodSource {
 	
 	@Id
-	private Long sourceId;
+	private Long id;
 	
 	private String name;
 	
@@ -16,7 +16,7 @@ public class FoodSource {
 	}
 	
 	public FoodSource(Long id, String name) {
-		this.sourceId = id;
+		this.id = id;
 		this.name = name;
 	}
 
@@ -25,13 +25,11 @@ public class FoodSource {
 	}
 
 	public Long getId() {
-		return sourceId;
+		return id;
 	}
 	
-	@Override
-	public String toString() {
-		return "FoodSource [sourceId=" + sourceId + ", name=" + name + "]";
-		
+	public String asString() {
+		return "FoodSource [id=" + id + ", name=" + name + "]";
 	}
 
 }

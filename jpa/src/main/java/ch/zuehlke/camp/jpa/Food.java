@@ -1,14 +1,19 @@
 package ch.zuehlke.camp.jpa;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Food {
-	
+
 	@Id
-	private Long foodId;
+	private Long id;
 	
 	@ManyToOne
 	private FoodGroup foodGroup;
@@ -16,14 +21,23 @@ public class Food {
 	@ManyToOne
 	private FoodSource foodSource;
 	
+	@OneToMany
+	private Collection<NutrimentInfo> nutrimentInfos = new ArrayList<NutrimentInfo>();
+	
 	private String name;
 	
-	public Food()  {
+	public Food() {
 		
 	}
 	
-	public Food(Long id, String name) {
-		this.foodId = id;
+	public Food(Long id, String name, FoodGroup group, FoodSource source) {
+		this.id = id;
+		this.name = name;
+		this.foodGroup = group;
+		this.foodSource = source;
+	}
+
+	public Food(String name) {
 		this.name = name;
 	}
 
@@ -32,29 +46,40 @@ public class Food {
 	}
 
 	public Long getId() {
-		return foodId;
+		return id;
 	}
 	
-	@Override
-	public String toString() {
-		return "Food [foodId=" + foodId + ",foodGroup=" + getFoodGroup() + ",foodSource=" + getFoodSource() + ", name=" + name + "]";
-		
+	public String asString() {
+		StringBuilder result = new StringBuilder();
+		result.append("Food [id=" + id + ", name=" + name);
+		result.append("foodGroup=" + foodGroup);
+		result.append("foodSource=" + foodSource);
+		result.append("nutrimentInfos=[");
+		for (NutrimentInfo nutriment : nutrimentInfos) {
+			result.append(nutriment.asString());
+		}
+		result.append("]");
+		result.append("]");
+		return result.toString();
 	}
 
 	public FoodGroup getFoodGroup() {
 		return foodGroup;
 	}
 
-	public void setFoodGroup(FoodGroup foodGroup) {
-		this.foodGroup = foodGroup;
-	}
-
 	public FoodSource getFoodSource() {
 		return foodSource;
 	}
 
-	public void setFoodSource(FoodSource foodSource) {
-		this.foodSource = foodSource;
+	public void addNutrimentInfo(NutrimentInfo info) {
+		nutrimentInfos.add(info);
 	}
-
+	
+	public void setNutrimentInfos(Collection<NutrimentInfo> nutrimentInfos) {
+		this.nutrimentInfos = nutrimentInfos;
+	}
+	
+	public Collection<NutrimentInfo> getNutrimentInfos() {
+		return Collections.unmodifiableCollection(nutrimentInfos);
+	}
 }
