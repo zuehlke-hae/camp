@@ -7,5 +7,6 @@ include 'jpa'
 include 'batch'
 include 'war'
 include 'webSocketServer'
+include 'webSocketClient'
 
 
