@@ -73,6 +73,10 @@ public class SpringPane extends Pane {
 					+ ".";
 		}
 	}
+	
+	public SpringPane(){
+		setParent(this);
+	}
 
 	private void resetCyclicStatuses() {
 		cyclicSprings = new HashSet<Spring>();
@@ -106,7 +110,7 @@ public class SpringPane extends Pane {
 		}
 	}
 
-	/* pp */boolean isCyclic(Spring s) {
+	boolean isCyclic(Spring s) {
 		if (s == null) {
 			return false;
 		}
@@ -137,7 +141,7 @@ public class SpringPane extends Pane {
 	 * Has no effect, since this layout manager does not use a per-component
 	 * string.
 	 */
-	public void addLayoutComponent(String name, Node c) {
+	private void addLayoutComponent(String name, Node c) {
 	}
 
 	/**
@@ -146,7 +150,7 @@ public class SpringPane extends Pane {
 	 * @param c
 	 *            the component being removed from the container
 	 */
-	public void removeLayoutComponent(Node c) {
+	private void removeLayoutComponent(Node c) {
 		componentConstraints.remove(c);
 	}
 
@@ -156,28 +160,28 @@ public class SpringPane extends Pane {
 				+ i.getBottom());
 	}
 
-	public Dimension2D minimumLayoutSize(Region parent) {
-		setParent(parent);
-		SpringConstraints pc = getConstraints(parent);
-		return addInsets(abandonCycles(pc.getWidth()).getMinimumValue(),
-				abandonCycles(pc.getHeight()).getMinimumValue(), parent);
-	}
-
-	public Dimension2D preferredLayoutSize(Region parent) {
-		setParent(parent);
-		SpringConstraints pc = getConstraints(parent);
-		return addInsets(abandonCycles(pc.getWidth()).getPreferredValue(),
-				abandonCycles(pc.getHeight()).getPreferredValue(), parent);
-	}
+//	public Dimension2D minimumLayoutSize(Region parent) {
+//		setParent(parent);
+//		SpringConstraints pc = getConstraints(parent);
+//		return addInsets(abandonCycles(pc.getWidth()).getMinimumValue(),
+//				abandonCycles(pc.getHeight()).getMinimumValue(), parent);
+//	}
+//
+//	public Dimension2D preferredLayoutSize(Region parent) {
+//		setParent(parent);
+//		SpringConstraints pc = getConstraints(parent);
+//		return addInsets(abandonCycles(pc.getWidth()).getPreferredValue(),
+//				abandonCycles(pc.getHeight()).getPreferredValue(), parent);
+//	}
 
 	// LayoutManager2 methods.
 
-	public Dimension2D maximumLayoutSize(Region parent) {
-		setParent(parent);
-		SpringConstraints pc = getConstraints(parent);
-		return addInsets(abandonCycles(pc.getWidth()).getMaximumValue(),
-				abandonCycles(pc.getHeight()).getMaximumValue(), parent);
-	}
+//	public Dimension2D maximumLayoutSize(Region parent) {
+//		setParent(parent);
+//		SpringConstraints pc = getConstraints(parent);
+//		return addInsets(abandonCycles(pc.getWidth()).getMaximumValue(),
+//				abandonCycles(pc.getHeight()).getMaximumValue(), parent);
+//	}
 
 	/**
 	 * If <code>constraints</code> is an instance of
@@ -192,7 +196,7 @@ public class SpringPane extends Pane {
 	 * 
 	 * @see SpringLayout.Constraints
 	 */
-	public void addLayoutComponent(Node component, Object constraints) {
+	private void addLayoutComponent(Node component, Object constraints) {
 		if (constraints instanceof SpringConstraints) {
 			putConstraints(component, (SpringConstraints) constraints);
 		}
@@ -242,7 +246,7 @@ public class SpringPane extends Pane {
 	 * 
 	 * @see #putConstraint(String, Component, Spring, String, Component)
 	 */
-	public void putConstraint(String e1, Node c1, double pad, String e2, Node c2) {
+	private void putConstraint(String e1, Node c1, double pad, String e2, Node c2) {
 		putConstraint(e1, c1, Spring.constant(pad), e2, c2);
 	}
 
@@ -279,13 +283,19 @@ public class SpringPane extends Pane {
 	 * @see #HORIZONTAL_CENTER
 	 * @see #BASELINE
 	 */
-	public void putConstraint(String e1, Node c1, Spring s, String e2, Node c2) {
+	private void putConstraint(String e1, Node c1, Spring s, String e2, Node c2) {
 		putConstraint(e1, c1, Spring.sum(s, getConstraint(e2, c2)));
 	}
 
 	private void putConstraint(String e, Node c, Spring s) {
 		if (s != null) {
 			getConstraints(c).setConstraint(e, s);
+		}
+	}
+	
+	private void removeConstraints(Node node, SpringConstraints constraints) {
+		if (node != null){
+			componentConstraints.remove(node);
 		}
 	}
 
@@ -405,13 +415,13 @@ public class SpringPane extends Pane {
 	
 	@Override
 	public void layoutChildren() {
-		minimumLayoutSize(this);
+		//minimumLayoutSize(this);
 		final List<Node> children = getManagedChildren();
 		int n = children.size();
-		getConstraints(this).reset();
-		for (int i = 0; i < n; i++) {
-			getConstraints(children.get(i)).reset();
-		}
+		//getConstraints(this).reset();
+		//for (int i = 0; i < n; i++) {
+		//	getConstraints(children.get(i)).reset();
+		//}
 
 		Insets insets = this.getInsets();
 		SpringConstraints pc = getConstraints(this);
@@ -425,12 +435,12 @@ public class SpringPane extends Pane {
 		for (int i = 0; i < n; i++) {
 			Node c = children.get(i);
 			SpringConstraints cc = getConstraints(c);
-			double x = abandonCycles(cc.getWest()).getValue();
-			double y = abandonCycles(cc.getNorth()).getValue();
+			double west = abandonCycles(cc.getWest()).getValue();
+			double north = abandonCycles(cc.getNorth()).getValue();
 			double width = abandonCycles(cc.getWidth()).getValue();
 			double height = abandonCycles(cc.getHeight()).getValue();
 			//c.setBounds(insets.getLeft() + x, insets.getTop() + y, width, height);
-			 layoutInArea(c, x, y, width, height, c.getBaselineOffset(),
+			 layoutInArea(c, west, north, width, height, c.getBaselineOffset(),
 					 insets,  HPos.LEFT, VPos.BASELINE);
 		}
 	}
@@ -441,6 +451,7 @@ public class SpringPane extends Pane {
 			while(c.next()) {
 				 for (SpringConstraints constraints : c.getRemoved()) {
 					 if (constraints != null && !springConstraints.contains(constraints)) {
+						 removeConstraints(constraints.getNode(), constraints);
 						 constraints.remove(SpringPane.this);
 					 }
 				 }
@@ -448,6 +459,7 @@ public class SpringPane extends Pane {
 				 for (SpringConstraints constraints : c.getAddedSubList()) {
 					 if (constraints != null) {
 						 constraints.add(SpringPane.this);
+						 putConstraints(constraints.getNode(), constraints);
 					 }
 				 }
 			}
@@ -456,4 +468,6 @@ public class SpringPane extends Pane {
 	};
 
 	public final ObservableList<SpringConstraints>  getSpringConstraints() { return springConstraints; }
+
+	
 }

@@ -12,12 +12,12 @@
 	<springConstraints>
 		<SpringConstraints>
 			<node><fx:reference source="userIdField"/></node>
-			<north><StaticSpring preferredValue="100.0"/></north>
-			<west><StaticSpring preferredValue="100.0"/></west>
+			<north><StaticSpring preferredValue="10.0"/></north>
+			<west><StaticSpring preferredValue="10.0"/></west>
 		</SpringConstraints>
 		<SpringConstraints>
 			<node><fx:reference source="identify"/></node>
-			<north><StaticSpring preferredValue="300.0"/></north>
+			<north><StaticSpring preferredValue="60.0"/></north>
 			<west><StaticSpring preferredValue="100.0"/></west>
 		</SpringConstraints>
 	</springConstraints>

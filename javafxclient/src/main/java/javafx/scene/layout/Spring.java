@@ -310,7 +310,7 @@ public abstract class Spring {
             return size;
         }
 
-        /*pp*/ boolean isCyclic(SpringPane l) {
+        boolean isCyclic(SpringPane l) {
             return l.isCyclic(s1) || l.isCyclic(s2);
         }
     };
@@ -348,7 +348,7 @@ public abstract class Spring {
      * @see Spring
      */
      public static Spring constant(double min, double pref, double max) {
-         return new StaticSpring(min, pref, max);
+    	 return new StaticSpring(min, pref, max);
      }
 
 
@@ -408,18 +408,9 @@ public abstract class Spring {
         return new MaxSpring(s1, s2);
     }
 
-    // Remove these, they're not used often and can be created using minus -
-    // as per these implementations.
-
-    /*pp*/ static Spring difference(Spring s1, Spring s2) {
+    public static Spring difference(Spring s1, Spring s2) {
         return sum(s1, minus(s2));
     }
-
-    /*
-    public static Spring min(Spring s1, Spring s2) {
-        return minus(max(minus(s1), minus(s2)));
-    }
-    */
 
     /**
      * Returns a spring whose <em>minimum</em>, <em>preferred</em>, <em>maximum</em>

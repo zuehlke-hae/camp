@@ -11,20 +11,18 @@ public class StaticSpring extends AbstractSpring {
     	super();
     }
     
+    public StaticSpring(double min, double pref, double max){
+        setMinimumValue(min);
+        setPreferredValue(pref);
+        setMaximumValue(max);
+    }
+    
     public StaticSpring(double pref) {
         this(pref, pref, pref);
     }
-
-    public StaticSpring(double min, double pref, double max) {
-        this.min = min;
-        this.pref = pref;
-        this.max = max;
-    }
     
     public void setPreferredValue(double pref){
-    	this.min = pref;
         this.pref = pref;
-        this.max = pref;
     }
 
      public String toString() {
@@ -42,4 +40,12 @@ public class StaticSpring extends AbstractSpring {
     public double getMaximumValue() {
         return max;
     }
+
+	public void setMinimumValue(double min) {
+		this.min = min; 
+	}
+	
+	public void setMaximumValue(double max) {
+		this.max = max; 
+	}
 }

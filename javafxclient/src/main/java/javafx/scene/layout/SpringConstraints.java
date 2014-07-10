@@ -660,7 +660,7 @@ public class SpringConstraints extends ConstraintsBase {
 																				: null;
 	}
 
-	/* pp */void reset() {
+	private void reset() {
 		Spring[] allSprings = { west, north, width, height, east, south,
 				horizontalCenter, verticalCenter, baseline };
 		for (Spring s : allSprings) {

@@ -32,7 +32,7 @@ public class ZenFoodApp extends Application {
 
 	private Scene scene;
 	private AddMealController addMenuController;
-	//private UserIdentificationController userIdentificationController;
+	private UserIdentificationController userIdentificationController;
 	private MainScreenController mainScreenController;
 	private ServiceApi service;
 
@@ -81,7 +81,7 @@ public class ZenFoodApp extends Application {
 		
 		
 		addMenuController = new AddMealController(this);
-		//userIdentificationController = new UserIdentificationController(this);
+		userIdentificationController = new UserIdentificationController(this);
 		mainScreenController = new MainScreenController(this);
 		service = serviceMock;
 	};
@@ -90,7 +90,7 @@ public class ZenFoodApp extends Application {
 	public void start(final Stage stage) throws Exception {
 		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 		// CREATE SCENE
-		scene = new Scene(addMenuController.getView(), 1024, 768, Color.WHITE);
+		scene = new Scene(userIdentificationController.getView(), 1024, 768, Color.WHITE);
 		stage.setScene(scene);
 		// START FULL SCREEN IF WANTED
 		if (PlatformFeatures.START_FULL_SCREEN) {
@@ -112,8 +112,8 @@ public class ZenFoodApp extends Application {
 	}
 	
 	void logout() {
-		//scene.setRoot(userIdentificationController.getView());
-		scene.setRoot(mainScreenController.getView());
+		scene.setRoot(userIdentificationController.getView());
+		//scene.setRoot(mainScreenController.getView());
 	}
 	
 	ServiceApi getService(){
